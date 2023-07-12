@@ -76,7 +76,7 @@ app.post("/rooms", (req, res) => {
   const { roomName, seats, amenities, price } = req.body;
   const room = { roomName, roomId: rooms.length + 1, seats, amenities, price };
   rooms.push(room);
-  res.status(201).json(room);
+  res.status(201).json({ message: "room added sucessfully" });
 });
 
 //API Endpoint for getting all details of bookings
@@ -109,7 +109,7 @@ app.post("/bookings", (req, res) => {
     status,
   };
   bookings.push(booking);
-  res.status(201).json(booking);
+  res.status(201).json({ message: "booked sucessfully" });
 });
 
 //API Endpoint for listing all rooms with booked Data
@@ -165,12 +165,9 @@ app.get("/customers/:name", (req, res) => {
   if (allData.length) {
     res.json(allData);
   } else {
-    res
-      .status(404)
-      .json({
-        message:
-          "Request Customer details N/A or customer not yet booked rooms",
-      });
+    res.status(404).json({
+      message: "Request Customer details N/A or customer not yet booked rooms",
+    });
   }
 });
 
